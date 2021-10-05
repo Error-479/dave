@@ -1,5 +1,5 @@
 # About dave
-dave automates virtually everything is a general-purpose Discord bot.
+dave automates virtually everything.
 
 # Features
 * Initial Release
