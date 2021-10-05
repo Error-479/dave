@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "dave automates virtually everything",
   "scripts": {
-    "dev": "nodemon -r dotenv/config -w .env -w src/ -T src/index.ts"
+    "start": "node -r dotenv/config ./build/index.js",
+    "build": "tsc",
+    "dev": "concurrently \"tsc --watch\" \"nodemon -r dotenv/config -w .env -w build/ build/index.js\""
   },
   "repository": {
     "type": "git",
@@ -21,8 +23,10 @@
     "discord.js": "^13.2.0"
   },
   "devDependencies": {
+    "concurrently": "^6.3.0",
     "dotenv": "^10.0.0",
     "nodemon": "^2.0.13",
-    "ts-node": "^10.2.1"
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
   }
 }
