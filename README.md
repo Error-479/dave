@@ -1,4 +1,4 @@
-# dave
+# About dave
 dave automates virtually everything.
 
 # Features
