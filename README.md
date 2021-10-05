@@ -11,6 +11,5 @@ Dave is currently in the initial stages of development. However, a majority of t
 * [Git](https://git-scm.com/downloads)
 * [Discord.js](https://discord.js.org/)
 
-
 # Contribution FAQ
-This section is reserved to help answer commonly asked questions about contributing to the development of Dave.
+ * To run dave, make a `.env` file in the root of the directory with `DISCORD_TOKEN=your token here`. Then run `npm install` and `npm run dev` to start the bot in dev mode.
