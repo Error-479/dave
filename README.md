@@ -1,11 +1,13 @@
-# dave
+# About dave
+dave automates virtually everything.
 
-dave automates virtually everything
+# Features
+* Initial Release
 
-## requirements
+# Requirements
+* [Node](https://nodejs.org/en/download/current/) v16 or higher 
+* [Discord.js](https://discord.js.org/)
 
-Node.js >= 16
 
-## running
-
+# Running
 To run dave, make a `.env` file in the root of the directory with `DISCORD_TOKEN=your token here`. Then run `npm install` and `npm run dev` to start the bot in dev mode.
