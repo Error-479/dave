@@ -4,11 +4,11 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 const commands = new Collection<string,any>(); //TODO: fix any
 const commandFiles = readdirSync(`${__dirname}/commands`).filter(file => file.endsWith('.js'));
-console.log(`${__dirname}/commands`);
+
 for(const f of commandFiles) {
   const command = require(`${__dirname}/commands/${f}`);
   commands.set(command.name, command);
-  console.log(command.name, "set")
+  console.log("[SET COMMAND]",command.name);
 }
 
 const prefix = '!';
@@ -24,10 +24,9 @@ client.on('messageCreate', m => {
 
     //console.log(args);
     if(commands.has(args[0])) {
-      console.log(args[0],"found");
       commands.get(args[0]).execute(m, args);
     } else {
-      console.log(args[0], "not found");
+      console.log("[COMMAND HANDLER]",args[0], "not found");
     }
   }
 });
