@@ -1,6 +1,9 @@
 # Build
 /build/
 
+# env file if exist
+.env
+
 # Logs
 logs
 *.log
