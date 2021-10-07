@@ -6,7 +6,7 @@ const client = new Client({
 
 const prefix = '!';
 
-client.once('ready', () => {
+client.on('ready', () => {
 	console.log(`Logged in as ${client.user?.tag}!`);
 });
 
