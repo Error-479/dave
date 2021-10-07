@@ -10,13 +10,27 @@ client.once('ready', () => {
   console.log(`Logged in as ${client.user?.tag}!`);
 });
 
-client.on('messageReactionAdd', (reaction, user) => {
-  if (reaction.message.id === '895372392845688874') {
+client.on('messageReactionAdd', async (reaction, user) => {
+  // Cache message
+	if (reaction.partial) {
+		try {
+			await reaction.fetch();
+		} catch (error) {
+			console.error('Failed to fetch: ', error);
+			return;
+		}
+	}
+
+  // Process reactions
+  if (reaction.message.content != null && reaction.message.content.includes(prefix + 'reacttest')) {
     if (reaction.emoji.name === '🍎'){
-      console.log('Apple emoji detected for specific message!');
-      /* TODO: Check if the bot has the manage_messages permission before
-         trying to remove a reaction to avoid potential errors */
-      reaction.remove();
+      console.log('Someone reacted with an apple emoji in a message that contained the text !reacttest.');
+      try{
+        await reaction.remove();
+      } catch (error) {
+        console.log('Failed to remove reaction: ', error);
+        return;
+      }
     }
   }
 });
