@@ -5,3 +5,11 @@ export interface runEvent {
     client: Client,
     args: string[]
 }
+
+export interface covidData {
+    newPositive: string,
+    newRecover: string,
+    currCases: string,
+    totalCases: string,
+    retrieved: string
+}
