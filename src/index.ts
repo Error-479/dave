@@ -7,7 +7,7 @@ import { ActivityTypes } from 'discord.js/typings/enums';
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
 
-let commands = new Collection<string[], (event: runEvent) => any>();
+let commands = new Collection<string[], (event: runEvent) => void>();
 
 const prefix = '!';
 
@@ -19,7 +19,6 @@ client.on('ready', () => {
   // below are examples of how to change status or presence
   changeStatus(client, ActivityTypes.LISTENING, 'learn.uark.edu');
   changePresence(client, PresenceData.ONLINE, 'with typescript');
-
 });
 
 client.on('messageCreate', message => {
