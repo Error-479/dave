@@ -1,20 +1,38 @@
-import { Client, Intents } from 'discord.js';
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+import {Client, Collection, Intents} from 'discord.js';
+import {setup as chandlerSetup} from './util/commandHandler';
+import {changeStatus} from './util/statusChanger';
+import {changePresence, PresenceData} from './util/presenceChanger';
+import {runEvent} from './types/types'
+import {ActivityTypes} from 'discord.js/typings/enums';
+
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
+
+let commands = new Collection<string[], (event: runEvent) => any>();
 
 const prefix = '!';
 
+chandlerSetup(commands, __dirname);
+
 client.on('ready', () => {
   console.log(`Logged in as ${client.user?.tag}!`);
+
+  // below are examples of how to change status or presence
+  changeStatus(client, ActivityTypes.WATCHING, 'learn.uark.edu');
+  changePresence(client, PresenceData.DND, 'with typescript');
+
 });
 
-client.on('message', m => {
-  if (m.author.bot) return;
-  if (m.content[0] === prefix) {
-    const args = m.content.slice(prefix.length).split(/(\s+)/);
-    console.log(args);
-    if (args[0] === 'help') {
-      m.reply('no');
-    }
+client.on('messageCreate', message => {
+  if (message.author.bot) return;
+  if (message.content[0] === prefix) {
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
+    const cf = commands.find((r,n) => n.includes(args[0]));
+    if(!cf) return;
+    else cf({
+      message,
+      args,
+      client
+    })
   }
 });
 
