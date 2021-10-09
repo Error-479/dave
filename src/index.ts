@@ -3,7 +3,7 @@ import {setup as chandlerSetup} from './util/commandHandler';
 import {changeStatus} from './util/statusChanger';
 import {changePresence, PresenceData} from './util/presenceChanger';
 import {runEvent} from './types/types'
-import {ActivityTypes} from 'discord.js/typings/enums';
+import { ActivityTypes } from 'discord.js/typings/enums';
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
 
@@ -17,7 +17,7 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user?.tag}!`);
 
   // below are examples of how to change status or presence
-  changeStatus(client, ActivityTypes.WATCHING, 'learn.uark.edu');
+  changeStatus(client, ActivityTypes.LISTENING, 'learn.uark.edu');
   changePresence(client, PresenceData.DND, 'with typescript');
 
 });
