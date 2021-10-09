@@ -13,3 +13,10 @@ export interface covidData {
     totalCases: string,
     retrieved: string
 }
+
+export enum PresenceData{
+    ONLINE     = 'online',
+    IDLE       = 'idle',
+    INVISIBLE  = 'invisible',
+    DND        = 'dnd'
+}
