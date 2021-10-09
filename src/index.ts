@@ -3,7 +3,7 @@ import {setup as chandlerSetup} from './util/commandHandler';
 import {changeStatus} from './util/statusChanger';
 import {changePresence} from './util/presenceChanger';
 import {runEvent, PresenceData} from './types/types'
-import { ActivityTypes } from 'discord.js/typings/enums';
+import {ActivityTypes} from 'discord.js/typings/enums';
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
 
