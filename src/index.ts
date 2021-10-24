@@ -5,7 +5,10 @@ import {changePresence} from './util/presenceChanger';
 import {runEvent, PresenceData} from './types/types'
 import {ActivityTypes} from 'discord.js/typings/enums';
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
+const client = new Client({
+	intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
+	partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
+});
 
 let commands = new Collection<string[], (event: runEvent) => void>();
 
