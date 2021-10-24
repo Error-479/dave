@@ -1,6 +1,9 @@
 # Build
 /build/
 
+# Lockfile
+package-lock.json
+
 # Logs
 logs
 *.log
