@@ -9,16 +9,18 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 let commands = new Collection<string[], (event: runEvent) => void>();
 
+
 const prefix = '!';
 
 chandlerSetup(commands, __dirname);
 
 client.on('ready', () => {
+
   console.log(`Logged in as ${client.user?.tag}!`);
 
   // below are examples of how to change status or presence
-  changeStatus(client, ActivityTypes.LISTENING, 'learn.uark.edu');
-  changePresence(client, PresenceData.ONLINE, 'with typescript');
+  // changeStatus(client, ActivityTypes.LISTENING, 'learn.uark.edu');
+  // changePresence(client, PresenceData.ONLINE, 'with typescript');
 });
 
 client.on('messageCreate', message => {
@@ -33,6 +35,31 @@ client.on('messageCreate', message => {
       client
     })
   }
+});
+
+client.on('messageReactionAdd', async (reaction, user) => {
+	// Cache message
+	if (reaction.partial) {
+		try {
+			await reaction.fetch();
+		} catch (error) {
+			console.error('Failed to fetch: ', error);
+			return;
+		}
+	}
+
+	// Process reactions
+	if (reaction.message.content != null && reaction.message.content.includes(prefix + 'reacttest')) {
+		if (reaction.emoji.name === '🍎') {
+			console.log('Someone reacted with an apple emoji in a message that contained the text !reacttest.');
+			try {
+				await reaction.remove();
+			} catch (error) {
+				console.log('Failed to remove reaction: ', error);
+				return;
+			}
+		}
+	}
 });
 
 client.login(process.env.DISCORD_TOKEN);
