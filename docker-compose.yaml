@@ -1,0 +1,7 @@
+services:
+  dave:
+    build: .
+    env_file:
+      - .env
+  postgres:
+    image: postgres
