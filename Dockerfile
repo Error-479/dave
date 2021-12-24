@@ -4,7 +4,8 @@ WORKDIR /app
 COPY src src
 COPY package.json .
 COPY tsconfig.json .
-RUN npm install
-RUN npm run build
+RUN --env-file .env
+RUN yarn install
+RUN yarn run build
 
-CMD [ "npm", "start" ]
+CMD [ "yarn", "start" ]
