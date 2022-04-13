@@ -3,36 +3,41 @@ import { Routes } from 'discord-api-types/v10';
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { setLogs } from './setLogs';
 import { Interaction } from 'discord.js';
+import { addReactRole } from './reactRoles';
+import { checkSocialCredit } from './checkSocialCredit';
 
 const rest = new REST({ version: '10' }).setToken(
-	process.env.DISCORD_TOKEN || 'failed'
+	process.env.DISCORD_TOKEN || ''
 );
 
 export interface ICommandData {
 	name: string;
-	builder: SlashCommandBuilder;
+	builder:
+		| SlashCommandBuilder
+		| Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
 	callback: (interaction: Interaction) => Promise<void>;
 }
 
 export const commands: Map<string, ICommandData> = new Map([
-	['setlogs', setLogs],
+	// ['setlogs', setLogs],
+	// ['addreactrole', addReactRole],
+	['socialcredit', checkSocialCredit],
 ]);
 
 export async function putSlashCommands(guildId: string) {
 	try {
 		console.log(`Refreshing commands for guild ${guildId}`);
 
-		await rest.put(
-			Routes.applicationGuildCommands(
-				process.env.CLIENT_ID || 'missing',
-				guildId
-			),
-			{
-				body: Array.from(commands, ([_name, command]) => {
-					return command.builder;
-				}),
-			}
-		);
+		if (process.env.CLIENT_ID)
+			await rest.put(
+				Routes.applicationGuildCommands(process.env.CLIENT_ID, guildId),
+				{
+					// eslint-disable-next-line @typescript-eslint/no-unused-vars
+					body: Array.from(commands, ([_name, command]) => {
+						return command.builder.toJSON();
+					}),
+				}
+			);
 
 		console.log('Successfully reloaded application (/) commands.');
 	} catch (error) {

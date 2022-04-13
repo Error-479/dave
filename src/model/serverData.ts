@@ -2,8 +2,10 @@ import * as fs from 'fs';
 
 export interface IServerData {
 	id: string;
+	adminRoles?: string[];
 	logsChannel?: string;
 	marketChannel?: string;
+	reactRoles?: [message: string, emoji: string][];
 }
 
 export function writeServerData(id: string, serverData: IServerData) {
@@ -13,6 +15,7 @@ export function writeServerData(id: string, serverData: IServerData) {
 export function readServerData(id: string): IServerData {
 	try {
 		const file = fs.readFileSync(`./data/${id}.json`);
+		console.log(file);
 		return JSON.parse(file.toString());
 	} catch (e) {
 		return { id };

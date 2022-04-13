@@ -1,6 +1,6 @@
-import { Guild, TextChannel } from 'discord.js';
+import { TextChannel } from 'discord.js';
 import { client } from '..';
-import { readServerData } from '../serverData';
+import { readServerData } from '../model/serverData';
 
 export async function log(guildId: string, message: string) {
 	const serverData = readServerData(guildId);

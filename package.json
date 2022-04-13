@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node -r dotenv/config ./build/index.js",
     "build": "tsc",
-    "dev": "concurrently \"tsc --watch\" \"nodemon -r dotenv/config -w .env -w build/ build/index.js\""
+    "dev": "nodemon -r dotenv/config -w .env -w './**/*.ts' src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -20,8 +20,10 @@
   "dependencies": {
     "@discordjs/rest": "^0.3.0",
     "@types/node": "^17.0.18",
+    "@types/sentiment": "^5.0.1",
     "discord-api-types": "^0.27.2",
-    "discord.js": "^13.6.0"
+    "discord.js": "^13.6.0",
+    "sentiment": "^5.0.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.1.0",
