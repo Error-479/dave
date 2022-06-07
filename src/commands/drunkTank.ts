@@ -1,5 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders';
 import { CommandInteraction } from 'discord.js';
+import { client } from '..';
 import { ICommandData } from './commands';
 
 export const drunkTank: ICommandData = {
@@ -22,6 +23,10 @@ export const drunkTank: ICommandData = {
 		const user = interaction.options.getUser('user');
 
 		if (user) {
+			const timeoutDuration = new Date().setHours(30, 0, 0, 0) - Date.now();
+
+			interaction.guild.members.cache.get(user.id)?.timeout(timeoutDuration);
+
 			interaction.reply({
 				content: `Timed out ${user.username}`,
 				ephemeral: true,
