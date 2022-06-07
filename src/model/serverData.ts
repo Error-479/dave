@@ -4,6 +4,7 @@ export interface IServerData {
 	id: string;
 	adminRoles?: string[];
 	logsChannel?: string;
+	craigslistChannel?: string;
 	marketChannel?: string;
 	reactRoles?: [message: string, emoji: string][];
 }

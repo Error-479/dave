@@ -4,6 +4,9 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { Interaction } from 'discord.js';
 import { checkSocialCredit } from './checkSocialCredit';
 import { drunkTank } from './drunkTank';
+import { wtb } from './wtb';
+import { wts } from './wts';
+import { setCraigslist } from './setCraigstlist';
 
 const rest = new REST({ version: '10' }).setToken(
 	process.env.DISCORD_TOKEN || ''
@@ -12,8 +15,8 @@ const rest = new REST({ version: '10' }).setToken(
 export interface ICommandData {
 	name: string;
 	builder:
-		| SlashCommandBuilder
-		| Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
+	| SlashCommandBuilder
+	| Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
 	callback: (interaction: Interaction) => Promise<void>;
 }
 
@@ -22,6 +25,9 @@ export const commands: Map<string, ICommandData> = new Map([
 	// ['addreactrole', addReactRole],
 	['socialcredit', checkSocialCredit],
 	['drunktank', drunkTank],
+	['setcraigslist', setCraigslist],
+	['wtb', wtb],
+	['wts', wts],
 ]);
 
 export async function putSlashCommands(guildId: string) {
