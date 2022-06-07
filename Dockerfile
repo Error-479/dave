@@ -4,7 +4,10 @@ WORKDIR /app
 COPY src src
 COPY package.json .
 COPY tsconfig.json .
-RUN yarn install
-RUN yarn run build
 
-CMD [ "yarn", "dev" ]
+RUN apk add --upgrade sqlite
+
+RUN yarn
+RUN yarn build
+
+CMD [ "yarn", "start" ]

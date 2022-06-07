@@ -1,0 +1,1 @@
+docker run -v "$(pwd)"/src:/app/src -v "$(pwd)"/.env:/app/.env dave

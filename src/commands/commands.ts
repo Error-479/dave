@@ -5,6 +5,7 @@ import { setLogs } from './setLogs';
 import { Interaction } from 'discord.js';
 import { addReactRole } from './reactRoles';
 import { checkSocialCredit } from './checkSocialCredit';
+import { drunkTank } from './drunkTank';
 
 const rest = new REST({ version: '10' }).setToken(
 	process.env.DISCORD_TOKEN || ''
@@ -22,6 +23,7 @@ export const commands: Map<string, ICommandData> = new Map([
 	// ['setlogs', setLogs],
 	// ['addreactrole', addReactRole],
 	['socialcredit', checkSocialCredit],
+	['drunktank', drunkTank],
 ]);
 
 export async function putSlashCommands(guildId: string) {
