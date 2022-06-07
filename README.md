@@ -11,4 +11,11 @@ dave automates virtually everything.
 
 
 # Running
-To run dave, make a `.env` file in the root of the directory with `DISCORD_TOKEN=your token here`. Then run `build-dev.sh` and `start-dev.sh`.
+To run dave, make a `.env` file in the root of the directory like this:
+
+```
+DISCORD_TOKEN=your token here
+CLIENT_ID=your application ID
+```
+
+Then run `build-dev.sh` and `start-dev.sh` to start dave in Docker.
