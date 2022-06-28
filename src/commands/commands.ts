@@ -4,6 +4,9 @@ import { SlashCommandBuilder } from '@discordjs/builders';
 import { Interaction } from 'discord.js';
 import { checkSocialCredit } from './checkSocialCredit';
 import { drunkTank } from './drunkTank';
+import { addRoleButton } from './roleButtons';
+import { setLogs } from './setLogs';
+import { createMessage } from './createMessage';
 
 const rest = new REST({ version: '10' }).setToken(
 	process.env.DISCORD_TOKEN || ''
@@ -18,10 +21,11 @@ export interface ICommandData {
 }
 
 export const commands: Map<string, ICommandData> = new Map([
-	// ['setlogs', setLogs],
-	// ['addreactrole', addReactRole],
-	['socialcredit', checkSocialCredit],
+	['addrolebutton', addRoleButton],
+	['createmessage', createMessage],
 	['drunktank', drunkTank],
+	['setlogs', setLogs],
+	['socialcredit', checkSocialCredit],
 ]);
 
 export async function putSlashCommands(guildId: string) {
